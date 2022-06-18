@@ -7,8 +7,8 @@ fs.readFile(process.argv[2])
   .then((data) =>
     data
       .toString()
-      .split(/\r?\n/)
-      .forEach((line, index, arr) => {
+      .split(/\r?\n/) //this is a univeral split for all os including windows and macos
+      .forEach((line, index, _) => {
         if (index == 0) {
           lawn = processFirstLine(line);
         } else if (index % 2 == 1) {
