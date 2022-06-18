@@ -1,7 +1,7 @@
 # Lawn-mower-cs
 
 This is a test done for the Contensquare application process.
-This program allows you to move a mower in any direction in a lawn. //
+This program allows you to move a mower in any direction in a lawn.  
 Initial positions along with instructions are given by the user as input, the program will then return the final positions as output
 
 ## Tech stack and dependencies
