@@ -13,7 +13,9 @@ const processMower = line => {
 
 const processActions = (mower, lawn, line) => {
   let m = mower;
-  line.split('').forEach(action => (m = processAction(m, lawn, action)));
+  line.split('').forEach((action) => {
+    m = processAction(m, lawn, action);
+  });
   console.log(`${m.x} ${m.y} ${m.dir}`);
 };
 

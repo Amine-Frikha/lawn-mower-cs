@@ -7,7 +7,7 @@ fs.readFile(process.argv[2])
   .then(data =>
     data
       .toString()
-      .split('\n')
+      .split(/\r?\n/)
       .forEach((line, index, arr) => {
         if (index == 0) {
           lawn = processFirstLine(line);
