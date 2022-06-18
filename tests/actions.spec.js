@@ -1,7 +1,8 @@
 const { Lawn, Mower } = require("../src/model");
+const { canMove } = require("../src/utils");
 
 describe("actions", () => {
-  let mower, lawn;
+  let mower, lawn, canItMove;
 
   beforeEach(() => {
     mower = new Mower(1, 1, "N");
@@ -30,17 +31,17 @@ describe("actions", () => {
 
   it("should not move when outside the lawn", () => {
     let mower = new Mower(0, 0, "S");
-    mower.moveForward();
-    expect(mower).toBe(mower);
+    canItMove = canMove(mower, lawn);
+    expect(canItMove).toBe(false);
     mower = new Mower(0, 0, "W");
-    mower.moveForward();
-    expect(mower).toBe(mower);
+    canItMove = canMove(mower, lawn);
+    expect(canItMove).toBe(false);
     mower = new Mower(5, 5, "N");
-    mower.moveForward();
-    expect(mower).toBe(mower);
+    canItMove = canMove(mower, lawn);
+    expect(canItMove).toBe(false);
     mower = new Mower(5, 0, "E");
-    mower.moveForward();
-    expect(mower).toBe(mower);
+    canItMove = canMove(mower, lawn);
+    expect(canItMove).toBe(false);
   });
 
   it("should move forward", () => {

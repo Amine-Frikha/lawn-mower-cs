@@ -26,16 +26,16 @@ const moveY = {
   W: 0,
 };
 
-const canMove = (x, y, xMax, yMax, dir) => {
-  switch (dir) {
+const canMove = (mower, lawn) => {
+  switch (mower.dir) {
     case "N":
-      return y < yMax;
+      return mower.y < lawn.y;
     case "S":
-      return y > 0;
+      return mower.y > 0;
     case "E":
-      return x < xMax;
+      return mower.x < lawn.x;
     case "W":
-      return x > 0;
+      return mower.x > 0;
   }
   throw new Error("Unknown direction " + dir);
 };

@@ -1,12 +1,12 @@
 const { Lawn, Mower } = require("./model");
 const { canMove } = require("./utils");
 
-const processFirstLine = (line) => {
+const setLawnSize = (line) => {
   const positions = line.split(" ");
   return new Lawn(positions[0], positions[1]);
 };
 
-const processMower = (line) => {
+const setMowerPosition = (line) => {
   const values = line.split(" ");
   return new Mower(values[0], values[1], values[2]);
 };
@@ -18,7 +18,10 @@ const processActions = (mower, lawn, line) => {
     .forEach(
       (action) => (currentMower = processAction(currentMower, lawn, action))
     );
-  console.log(`${currentMower.x} ${currentMower.y} ${currentMower.dir}`);
+  console.log(
+    "Final position mower : " +
+      `${currentMower.x} ${currentMower.y} ${currentMower.dir}`
+  );
 };
 
 const processAction = (mower, lawn, action) => {
@@ -30,13 +33,15 @@ const processAction = (mower, lawn, action) => {
       mower.moveRight();
       return mower;
     case "F":
-      if (canMove(mower.x, mower.y, lawn.x, lawn.y, mower.dir)) {
+      if (canMove(mower, lawn)) {
         mower.moveForward();
-        return mower;
+      } else {
+        console.log("Cannot move. You've reached the edges of the lawn. ");
       }
+      return mower;
     default:
       throw new Error("Unknown action '" + action + "'");
   }
 };
 
-module.exports = { processActions, processFirstLine, processMower };
+module.exports = { processActions, setLawnSize, setMowerPosition };
