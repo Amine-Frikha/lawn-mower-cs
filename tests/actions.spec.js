@@ -2,7 +2,7 @@ const { Lawn, Mower } = require('../src/model');
 const { canMove } = require('../src/utils');
 
 describe('actions', () => {
-  let mower, lawn, canItMove;
+  let mower, lawn;
 
   beforeEach(() => {
     mower = new Mower(1, 1, 'N');
