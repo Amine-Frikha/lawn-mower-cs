@@ -37,3 +37,25 @@ in the root dir of the project run `npm install` or `yarn install`
 
 - To run the program with a test input file run : `npm start test.txt` (you can change "test.txt" to match the name of your file)
 - To run unit tests do `npm test`
+
+## Project
+
+### index
+
+Point of entry of the program. Loads file as an argument processes it.
+
+### inputChecker
+
+Checks if the inputs respect the rules.
+
+### engine
+
+The core logic of the program.
+
+### model
+
+Contains the program's classes.
+
+### utils
+
+Utility functions.

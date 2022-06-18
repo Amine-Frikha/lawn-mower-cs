@@ -6,8 +6,8 @@ const { canMove } = require('./utils');
  * @return {object} A Lawn object
  */
 const buildLawn = line => {
-  const coordinates = line.split(' ');
-  return new Lawn(parseInt(coordinates[0]), parseInt(coordinates[1]));
+  const dimensions = line.split(' ');
+  return new Lawn(parseInt(dimensions[0]), parseInt(dimensions[1]));
 };
 
 /** Sets inital position of mower
@@ -15,8 +15,12 @@ const buildLawn = line => {
  * @return {object} A Mower object
  */
 const initMowerPosition = line => {
-  const values = line.split(' ');
-  return new Mower(parseInt(values[0]), parseInt(values[1]), values[2]);
+  const coordinates = line.split(' ');
+  return new Mower(
+    parseInt(coordinates[0]),
+    parseInt(coordinates[1]),
+    coordinates[2],
+  );
 };
 
 /** Processes a whole line of actions
@@ -25,7 +29,6 @@ const initMowerPosition = line => {
  * @param  {string} line
  */
 const processActions = (mower, lawn, line) => {
-  //let currentMower = mower;
   line.split('').forEach(action => processAction(mower, lawn, action));
   console.log(
     'Final position of mower : ' + `${mower.x} ${mower.y} ${mower.dir}`,
@@ -40,7 +43,7 @@ const processActions = (mower, lawn, line) => {
  */
 const processAction = (mower, lawn, action) => {
   switch (action) {
-    // F is the first case for optimization as F generally the most executed action.
+    // F is listed first for optimization purposes: it's usually the most frequent action
     case 'F':
       if (canMove(mower, lawn)) {
         mower.moveForward();
