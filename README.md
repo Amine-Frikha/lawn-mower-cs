@@ -20,6 +20,7 @@ Dependencies are in `package.json` file and are managed by npm.
 - `jasmine` for unit tests
 - `prettier` for code formatting
 - `pre-commit`
+- `JsDoc` for documentation
 
 ## Quickstart
 
