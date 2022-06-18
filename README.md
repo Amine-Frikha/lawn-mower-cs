@@ -32,5 +32,5 @@ in the root dir of the project run `npm install` or `yarn install`
 
 ### Usage
 
-- To run the program with a test input file run : `npm start test` (you can change test to match the name of your file)
+- To run the program with a test input file run : `npm start test` (you can change "test" to match the name of your file)
 - To run unit tests do `npm test`
