@@ -1,5 +1,5 @@
 const { Lawn, Mower } = require("./model");
-const { moveLeft, moveRight, moveForward } = require("./actions");
+const { canMove } = require("./utils");
 
 const processFirstLine = (line) => {
   const positions = line.split(" ");
@@ -13,20 +13,27 @@ const processMower = (line) => {
 
 const processActions = (mower, lawn, line) => {
   let currentMower = mower;
-  line.split("").forEach((action) => {
-    currentMower = processAction(currentMower, lawn, action);
-  });
+  line
+    .split("")
+    .forEach(
+      (action) => (currentMower = processAction(currentMower, lawn, action))
+    );
   console.log(`${currentMower.x} ${currentMower.y} ${currentMower.dir}`);
 };
 
 const processAction = (mower, lawn, action) => {
   switch (action) {
     case "L":
-      return moveLeft(mower);
+      mower.moveLeft();
+      return mower;
     case "R":
-      return moveRight(mower);
+      mower.moveRight();
+      return mower;
     case "F":
-      return moveForward(mower, lawn);
+      if (canMove(mower.x, mower.y, lawn.x, lawn.y, mower.dir)) {
+        mower.moveForward();
+        return mower;
+      }
     default:
       throw new Error("Unknown action '" + action + "'");
   }
