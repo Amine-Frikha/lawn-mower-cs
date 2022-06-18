@@ -19,7 +19,7 @@ const processActions = (mower, lawn, line) => {
       (action) => (currentMower = processAction(currentMower, lawn, action))
     );
   console.log(
-    "Final position mower : " +
+    "Final position of mower : " +
       `${currentMower.x} ${currentMower.y} ${currentMower.dir}`
   );
 };
@@ -36,7 +36,7 @@ const processAction = (mower, lawn, action) => {
       if (canMove(mower, lawn)) {
         mower.moveForward();
       } else {
-        console.log("Cannot move. You've reached the edges of the lawn. ");
+        console.log("Cannot move. Mower has reached the edges of the lawn.");
       }
       return mower;
     default:

@@ -7,7 +7,7 @@ describe("Model", () => {
     expect(lawn.y).toBe(20);
   });
 
-  it("should create a mower", () => {
+  it("should create a Mower", () => {
     const mower = new Mower(8, 20, "W");
     expect(mower.x).toBe(8);
     expect(mower.y).toBe(20);
