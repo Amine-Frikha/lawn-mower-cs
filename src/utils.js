@@ -1,3 +1,4 @@
+// converts direction to left depending on current direction
 const toLeft = {
   N: "W",
   S: "E",
@@ -5,6 +6,7 @@ const toLeft = {
   W: "S",
 };
 
+// converts direction to right depending on current direction
 const toRight = {
   N: "E",
   S: "W",
@@ -12,6 +14,7 @@ const toRight = {
   W: "N",
 };
 
+// Says how to move on the x coordiante depending on direction
 const moveX = {
   N: 0,
   S: 0,
@@ -19,6 +22,7 @@ const moveX = {
   W: -1,
 };
 
+// Says how to move on the x coordiante depending on direction
 const moveY = {
   N: 1,
   S: -1,
@@ -26,6 +30,11 @@ const moveY = {
   W: 0,
 };
 
+/**Tests if mower can move. Returns true of mower will be within lawn on the next instruction and false otherwise.
+ * @param  {Object} mower
+ * @param  {Object} lawn
+ * @return {Boolean}
+ */
 const canMove = (mower, lawn) => {
   switch (mower.dir) {
     case "N":

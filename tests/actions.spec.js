@@ -10,21 +10,17 @@ describe("actions", () => {
   });
 
   it("should move to the left", () => {
-    mower.moveLeft();
-    expect(mower).toEqual(new Mower(1, 1, "W"));
-    ["S", "E", "N"].forEach((expected) => {
+    ["W", "S", "E", "N"].forEach((expectedDir) => {
       mower.moveLeft();
-      expect(mower.dir).toBe(expected);
+      expect(mower).toEqual(new Mower(1, 1, expectedDir));
       return mower;
     });
   });
 
   it("should move to the right", () => {
-    mower.moveRight();
-    expect(mower).toEqual(new Mower(1, 1, "E"));
-    ["S", "W", "N"].forEach((expected) => {
+    ["E", "S", "W", "N"].forEach((expectedDir) => {
       mower.moveRight();
-      expect(mower.dir).toBe(expected);
+      expect(mower).toEqual(new Mower(1, 1, expectedDir));
       return mower;
     });
   });
@@ -47,14 +43,14 @@ describe("actions", () => {
   it("should move forward", () => {
     mower.moveForward();
     expect(mower).toEqual(new Mower(1, 2, "N"));
-    let mower2 = new Mower(3, 3, "E");
-    mower2.moveForward();
-    expect(mower2).toEqual(new Mower(4, 3, "E"));
-    let mower3 = new Mower(3, 3, "W");
-    mower3.moveForward();
-    expect(mower3).toEqual(new Mower(2, 3, "W"));
-    let mower4 = new Mower(3, 3, "S");
-    mower4.moveForward();
-    expect(mower4).toEqual(new Mower(3, 2, "S"));
+    mower = new Mower(3, 3, "E");
+    mower.moveForward();
+    expect(mower).toEqual(new Mower(4, 3, "E"));
+    mower = new Mower(3, 3, "W");
+    mower.moveForward();
+    expect(mower).toEqual(new Mower(2, 3, "W"));
+    mower = new Mower(3, 3, "S");
+    mower.moveForward();
+    expect(mower).toEqual(new Mower(3, 2, "S"));
   });
 });
