@@ -1,5 +1,5 @@
 const fs = require("fs-extra");
-const { processActions, setLawnSize, setMowerPosition } = require("./engine");
+const { processActions, buildLawn, initMowerPosition } = require("./engine");
 
 let lawn, mower;
 
@@ -11,9 +11,9 @@ fs.readFile(process.argv[2])
       .split(/\r?\n/) // this is a univeral line split for all os including windows and macOS
       .forEach((line, index, _) => {
         if (index == 0) {
-          lawn = setLawnSize(line);
+          lawn = buildLawn(line);
         } else if (index % 2 == 1) {
-          mower = setMowerPosition(line);
+          mower = initMowerPosition(line);
         } else {
           processActions(mower, lawn, line);
         }

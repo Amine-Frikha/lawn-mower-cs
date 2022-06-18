@@ -1,22 +1,22 @@
-const { Lawn, Mower } = require("./model");
-const { canMove } = require("./utils");
+const { Lawn, Mower } = require('./model');
+const { canMove } = require('./utils');
 
 /**Sets Lawn size
  * @param  {string} line a line in the input file
  * @return {object} A Lawn object
  */
-const setLawnSize = (line) => {
-  const positions = line.split(" ");
-  return new Lawn(positions[0], positions[1]);
+const buildLawn = line => {
+  const coordinates = line.split(' ');
+  return new Lawn(parseInt(coordinates[0]), parseInt(coordinates[1]));
 };
 
 /** Sets inital position of mower
  * @param  {string} line a line in the input file
  * @return {object} A Mower object
  */
-const setMowerPosition = (line) => {
-  const values = line.split(" ");
-  return new Mower(values[0], values[1], values[2]);
+const initMowerPosition = line => {
+  const values = line.split(' ');
+  return new Mower(parseInt(values[0]), parseInt(values[1]), values[2]);
 };
 
 /** Processes a whole line of actions
@@ -25,15 +25,10 @@ const setMowerPosition = (line) => {
  * @param  {string} line
  */
 const processActions = (mower, lawn, line) => {
-  let currentMower = mower;
-  line
-    .split("")
-    .forEach(
-      (action) => (currentMower = processAction(currentMower, lawn, action))
-    );
+  //let currentMower = mower;
+  line.split('').forEach(action => processAction(mower, lawn, action));
   console.log(
-    "Final position of mower : " +
-      `${currentMower.x} ${currentMower.y} ${currentMower.dir}`
+    'Final position of mower : ' + `${mower.x} ${mower.y} ${mower.dir}`,
   );
 };
 
@@ -45,22 +40,23 @@ const processActions = (mower, lawn, line) => {
  */
 const processAction = (mower, lawn, action) => {
   switch (action) {
-    case "L":
-      mower.moveLeft();
-      return mower;
-    case "R":
-      mower.moveRight();
-      return mower;
-    case "F":
+    // F is the first case for optimization as F generally the most executed action.
+    case 'F':
       if (canMove(mower, lawn)) {
         mower.moveForward();
       } else {
-        console.log("Cannot move. Mower has reached the edges of the lawn.");
+        console.log('Cannot move. Mower has reached the edges of the lawn.');
       }
-      return mower;
+      break;
+    case 'L':
+      mower.moveLeft();
+      break;
+    case 'R':
+      mower.moveRight();
+      break;
     default:
       throw new Error("Unknown action '" + action + "'");
   }
 };
 
-module.exports = { processActions, setLawnSize, setMowerPosition };
+module.exports = { processActions, buildLawn, initMowerPosition };

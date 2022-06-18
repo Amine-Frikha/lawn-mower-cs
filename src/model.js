@@ -13,13 +13,13 @@ class Lawn {
 
 class Mower {
   /** Creates a Mower object with its coordinates
-   * @param  {} x x coordinate
-   * @param  {} y y coordinate
-   * @param  {} dir direction
+   * @param  {number} x x coordinate
+   * @param  {number} y y coordinate
+   * @param  {string} dir direction
    */
   constructor(x, y, dir) {
-    this.x = parseInt(x);
-    this.y = parseInt(y);
+    this.x = x;
+    this.y = y;
     this.dir = dir;
   }
   /** Moves mower to the right
