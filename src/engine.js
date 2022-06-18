@@ -12,11 +12,11 @@ const processMower = line => {
 };
 
 const processActions = (mower, lawn, line) => {
-  let m = mower;
+  let currentMower = mower;
   line.split('').forEach((action) => {
-    m = processAction(m, lawn, action);
+    currentMower = processAction(currentMower, lawn, action);
   });
-  console.log(`${m.x} ${m.y} ${m.dir}`);
+  console.log(`${currentMower.x} ${currentMower.y} ${currentMower.dir}`);
 };
 
 const processAction = (mower, lawn, action) => {
