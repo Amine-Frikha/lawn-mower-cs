@@ -1,10 +1,10 @@
-const fs = require('fs-extra');
-const { processActions, processFirstLine, processMower } = require('./engine');
+const fs = require("fs-extra");
+const { processActions, processFirstLine, processMower } = require("./engine");
 
 let lawn, mower;
 
 fs.readFile(process.argv[2])
-  .then(data =>
+  .then((data) =>
     data
       .toString()
       .split(/\r?\n/)
@@ -16,6 +16,6 @@ fs.readFile(process.argv[2])
         } else {
           processActions(mower, lawn, line);
         }
-      }),
+      })
   )
-  .catch(err => console.error(err));
+  .catch((err) => console.error(err));

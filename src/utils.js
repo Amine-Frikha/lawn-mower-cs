@@ -1,15 +1,15 @@
 const toLeft = {
-  N: 'W',
-  S: 'E',
-  E: 'N',
-  W: 'S',
+  N: "W",
+  S: "E",
+  E: "N",
+  W: "S",
 };
 
 const toRight = {
-  N: 'E',
-  S: 'W',
-  E: 'S',
-  W: 'N',
+  N: "E",
+  S: "W",
+  E: "S",
+  W: "N",
 };
 
 const moveX = {
@@ -28,16 +28,16 @@ const moveY = {
 
 const canMove = (x, y, xMax, yMax, dir) => {
   switch (dir) {
-    case 'N':
+    case "N":
       return y < yMax;
-    case 'S':
+    case "S":
       return y > 0;
-    case 'E':
+    case "E":
       return x < xMax;
-    case 'W':
+    case "W":
       return x > 0;
   }
-  throw new Error('Unknown direction ' + dir);
+  throw new Error("Unknown direction " + dir);
 };
 
 module.exports = { toLeft, toRight, moveX, moveY, canMove };
