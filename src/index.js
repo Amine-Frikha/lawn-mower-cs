@@ -1,8 +1,12 @@
 const fs = require('fs-extra');
 const { processActions, buildLawn, initMowerPosition } = require('./engine');
-const { dimensionsChecker, coordinatesChecker } = require('./inputChecker');
+const {
+  parseLawnInput,
+  parseMowerInput,
+  parseActionsInput,
+} = require('./inputParser');
 
-let lawn, mower;
+let lawn, mower, dimensions, coordinates, actions;
 
 // getting input file as an argument
 fs.readFile(process.argv[2])
@@ -12,19 +16,17 @@ fs.readFile(process.argv[2])
       .split(/\r?\n/) // this is a univeral line split for all os including windows and macOS
       .forEach((line, index, _) => {
         if (index == 0) {
-          if (dimensionsChecker(line)) {
-            lawn = buildLawn(line);
-          } else {
-            throw new Error('Invalid dimensions : ' + line);
-          }
+          dimensions = parseLawnInput(line);
+          lawn = buildLawn(dimensions);
         } else if (index % 2 == 1) {
-          if (coordinatesChecker(lawn, line)) {
-            mower = initMowerPosition(line);
-          } else {
-            throw new Error('initial position outside of lawn : ' + line);
-          }
+          coordinates = parseMowerInput(lawn, line);
+          mower = initMowerPosition(coordinates);
         } else {
-          processActions(mower, lawn, line);
+          actions = parseActionsInput(line);
+          processActions(mower, lawn, actions);
+          console.log(
+            'Final position of mower : ' + `${mower.x} ${mower.y} ${mower.dir}`,
+          );
         }
       }),
   )

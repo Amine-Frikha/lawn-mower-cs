@@ -44,9 +44,9 @@ in the root dir of the project run `npm install` or `yarn install`
 
 Point of entry of the program. Loads file as an argument processes it.
 
-### inputChecker
+### inputParser
 
-Checks if the inputs respect the rules.
+Checks if the inputs respect the rules and returns the respective arrays.
 
 ### engine
 

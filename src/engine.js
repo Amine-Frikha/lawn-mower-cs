@@ -2,20 +2,18 @@ const { Lawn, Mower } = require('./model');
 const { canMove } = require('./utils');
 
 /**Sets Lawn size
- * @param  {string} line a line in the input file
+ * @param  {Array} dimensions array of the lawn's dimensions
  * @return {object} A Lawn object
  */
-const buildLawn = line => {
-  const dimensions = line.split(' ');
+const buildLawn = dimensions => {
   return new Lawn(parseInt(dimensions[0]), parseInt(dimensions[1]));
 };
 
 /** Sets inital position of mower
- * @param  {string} line a line in the input file
+ * @param  {Array} coordinates array of mower's coordinates
  * @return {object} A Mower object
  */
-const initMowerPosition = line => {
-  const coordinates = line.split(' ');
+const initMowerPosition = coordinates => {
   return new Mower(
     parseInt(coordinates[0]),
     parseInt(coordinates[1]),
@@ -23,16 +21,13 @@ const initMowerPosition = line => {
   );
 };
 
-/** Processes a whole line of actions
+/** Processes a whole array of actions
  * @param  {object} mower
  * @param  {object} lawn
- * @param  {string} line
+ * @param  {Array} actions array of mower actions
  */
-const processActions = (mower, lawn, line) => {
-  line.split('').forEach(action => processAction(mower, lawn, action));
-  console.log(
-    'Final position of mower : ' + `${mower.x} ${mower.y} ${mower.dir}`,
-  );
+const processActions = (mower, lawn, actions) => {
+  actions.forEach(action => processAction(mower, lawn, action));
 };
 
 /** Processes a single action
