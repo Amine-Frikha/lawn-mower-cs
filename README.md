@@ -19,7 +19,7 @@ Dependencies are in `package.json` file and are managed by npm.
 - `fs-extra` to manage filesystem
 - `jasmine` for unit tests
 - `prettier` for code formatting
-- `pre-commit`
+- `pre-commit` with `ESlint` and `prettier` hooks 
 - `JsDoc` for documentation
 
 ## Quickstart
